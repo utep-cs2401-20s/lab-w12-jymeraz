@@ -4,40 +4,111 @@ class myBinarySearchTreeNode{
   myBinarySearchTreeNode right;
     
   myBinarySearchTreeNode(int inValue){
-    // created a new node with empty child pointers
-
+    // Create a new node with null left and right pointers.
+    myValue = inValue;
   }
   
   myBinarySearchTreeNode(int[] A){
-    // creates a new Binary Search Tree rooted at the first value in the array
-    /// by inserting elements into the tree in the order they are given in A.
+    // Create the root of the tree using the first element of the array.
+    myValue = A[0];
 
+    // Insert the rest of the values in the array to the tree.
+    for(int i = 1; i < A.length; i++){
+      insert(A[i]);
+    }
   }
   
   public void insert(int inValue){
-    // This method takes a new integer as input and decides 
-    // if it should be place: 
-    //    * as the left child,
-    //    * as the right child, 
-    //    * in the left subtree,
-    //    * or in the right subtree.
-    // If the value already exists in the tree, no action is taken. 
-    
+    // Check if the value is greater than, less than, or equal to the current integer in myValue.
+    if(inValue > myValue){
+      // Create a new node if the right node is null.
+      if(right == null){
+        right = new myBinarySearchTreeNode(inValue);
+      } else {
+        // Recursively traverse the array if the right node was not null.
+        right.insert(inValue);
+      }
+    } else if (inValue < myValue){
+      // Create a new node if the left node is null.
+      if(left == null){
+        left = new myBinarySearchTreeNode(inValue);
+      } else {
+        // Recursively traverse the array if the left node was not null.
+        left.insert(inValue);
+      }
+    } else {
+      // Print out an error statement if there was a duplicate.
+      System.out.print("Error. Duplicates not allowed");
+    }
   }
   
   public int height(){
-     // This method recursively calculates the height of the entire (sub)tree.
-     // This method will take O(n) time
-     return -1;
+    // Initialize the left and right heights to zero.
+    int leftHeight = 0;
+    int rightHeight = 0;
+
+    if(left != null){
+      // Sum up the number of edges in the left subtree.
+      leftHeight = left.height() + 1;
+    }
+    if(right != null){
+      // Sum up the number of edges in the right subtree.
+      rightHeight = right.height() + 1;
+    }
+
+    // Return the height of the largest subtree.
+    return Math.max(leftHeight, rightHeight);
   }
   
   public int depth(int search){
-     // This method recursively calculates the depth of a given search value. 
-     // If the given value is not in the tree, this method returns -1. 
-     // Note that if the tree is a proper BST, this method should complete in O(log n) time.
-     // Additionally, remember that the depth is the number of nodes on the path from a node to the root 
-     // (i.e. the number of the recursie calls).
-    return -1;
+    // Check if the value is greater than, less than, or equal to the current integer in myValue.
+    if(search > myValue){
+      // Recursively traverse the binary search tree if the right node is not null.
+      if(right != null){
+        // If the value is not in the tree, return -1.
+        if(right.depth(search) == -1){
+          return -1;
+        } else {
+          // Sum up the number of edges it takes to get to the value.
+          return right.depth(search) + 1;
+        }
+      } else {
+        // If the value is not in the tree, return -1.
+        return -1;
+      }
+    } else if(search < myValue){
+      // Recursively traverse the binary search tree if the left node is not null.
+      if(left != null){
+        // If the value is not in the tree, return -1.
+        if(left.depth(search) == -1){
+          return -1;
+        } else {
+          // Sum up the number of edges it takes to get to the value.
+          return left.depth(search) + 1;
+        }
+      } else {
+        // If the value is not in the tree, return -1.
+        return -1;
+      }
+    } else {
+      // If the value was found, return 0.
+      return 0;
+    }
+  }
+
+  public int size(){
+    // Initialize sum to 1 to include the root.
+    int sum = 1;
+    // Sum up the number of nodes on the left subtree.
+    if(left != null){
+      sum += left.size();
+    }
+    // Sum up the number of nodes on the right subtree.
+    if(right != null){
+      sum += right.size();
+    }
+    // Return the total number of nodes.
+    return sum;
   }
   
   // Utility function included so you can debug your solution. 
