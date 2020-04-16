@@ -2,12 +2,23 @@ class myBinarySearchTreeNode{
   int myValue;
   myBinarySearchTreeNode left;
   myBinarySearchTreeNode right;
-    
+
+  /**
+   * This constructor is used to create a single tree node.
+   * The left and right nodes are left null.
+   * @param inValue
+   */
   myBinarySearchTreeNode(int inValue){
     // Create a new node with null left and right pointers.
     myValue = inValue;
   }
-  
+
+  /**
+   * This constructor is used to create a binary search tree from an array.
+   * The first element in the array is saved to the root.
+   * The following elements of the array are inserted to the root to create the tree.
+   * @param A
+   */
   myBinarySearchTreeNode(int[] A){
     // Create the root of the tree using the first element of the array.
     myValue = A[0];
@@ -17,7 +28,13 @@ class myBinarySearchTreeNode{
       insert(A[i]);
     }
   }
-  
+
+  /**
+   * This method inserts a node in its correct place in the tree.
+   * A new node is created in the right if it is greater and in the left if it is less than the current node when there is no node there.
+   * If a node already exists with that value, a new node is not created.
+   * @param inValue
+   */
   public void insert(int inValue){
     // Check if the value is greater than, less than, or equal to the current integer in myValue.
     if(inValue > myValue){
@@ -41,7 +58,11 @@ class myBinarySearchTreeNode{
       System.out.println("Error. Duplicates not allowed");
     }
   }
-  
+
+  /**
+   * This method returns the longest path from the root to a leaf.
+   * @return
+   */
   public int height(){
     // Initialize the left and right heights to zero.
     int leftHeight = 0;
@@ -59,7 +80,13 @@ class myBinarySearchTreeNode{
     // Return the height of the largest subtree.
     return Math.max(leftHeight, rightHeight);
   }
-  
+
+  /**
+   * This method returns the number of edges between the root to a specific value.
+   * A value of -1 is returned if the value is not found.
+   * @param search
+   * @return
+   */
   public int depth(int search){
     // Check if the value is greater than, less than, or equal to the current integer in myValue.
     if(search > myValue){
@@ -96,6 +123,10 @@ class myBinarySearchTreeNode{
     }
   }
 
+  /**
+   * This method returns the number of nodes in the tree through a full tree traversal.
+   * @return
+   */
   public int size(){
     // Initialize sum to 1 to include the root.
     int sum = 1;
@@ -111,7 +142,7 @@ class myBinarySearchTreeNode{
     return sum;
   }
   
-  // Utility function included so you can debug your solution. 
+  // Utility function included to debug the solution.
   public void print() { print(""); }
   private void print(String prefix) {
     System.out.println(prefix + myValue);
@@ -120,5 +151,4 @@ class myBinarySearchTreeNode{
     if(left != null) left.print(prefix + "\u251C ");
     if(right != null) right.print(prefix + "\u2514 ");
   }
-  
 } 
