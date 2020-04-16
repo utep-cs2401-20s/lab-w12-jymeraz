@@ -6,7 +6,7 @@ class myBinarySearchTreeNode{
   /**
    * This constructor is used to create a single tree node.
    * The left and right nodes are left null.
-   * @param inValue
+   * @param inValue An integer value used as an attribute for a node.
    */
   myBinarySearchTreeNode(int inValue){
     // Create a new node with null left and right pointers.
@@ -17,7 +17,7 @@ class myBinarySearchTreeNode{
    * This constructor is used to create a binary search tree from an array.
    * The first element in the array is saved to the root.
    * The following elements of the array are inserted to the root to create the tree.
-   * @param A
+   * @param A An integer array used to create the binary search tree.
    */
   myBinarySearchTreeNode(int[] A){
     // Create the root of the tree using the first element of the array.
@@ -33,7 +33,7 @@ class myBinarySearchTreeNode{
    * This method inserts a node in its correct place in the tree.
    * A new node is created in the right if it is greater and in the left if it is less than the current node when there is no node there.
    * If a node already exists with that value, a new node is not created.
-   * @param inValue
+   * @param inValue An integer value used to create a new node in the tree.
    */
   public void insert(int inValue){
     // Check if the value is greater than, less than, or equal to the current integer in myValue.
@@ -61,7 +61,7 @@ class myBinarySearchTreeNode{
 
   /**
    * This method returns the longest path from the root to a leaf.
-   * @return
+   * @return The height of the tree.
    */
   public int height(){
     // Initialize the left and right heights to zero.
@@ -84,8 +84,8 @@ class myBinarySearchTreeNode{
   /**
    * This method returns the number of edges between the root to a specific value.
    * A value of -1 is returned if the value is not found.
-   * @param search
-   * @return
+   * @param search An integer value that is being used to find its depth.
+   * @return The depth of the integer parameter.
    */
   public int depth(int search){
     // Check if the value is greater than, less than, or equal to the current integer in myValue.
@@ -125,7 +125,7 @@ class myBinarySearchTreeNode{
 
   /**
    * This method returns the number of nodes in the tree through a full tree traversal.
-   * @return
+   * @return The integer size of the tree.
    */
   public int size(){
     // Initialize sum to 1 to include the root.
