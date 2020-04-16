@@ -38,7 +38,7 @@ class myBinarySearchTreeNode{
       }
     } else {
       // Print out an error statement if there was a duplicate.
-      System.out.print("Error. Duplicates not allowed");
+      System.out.println("Error. Duplicates not allowed");
     }
   }
   
